@@ -1,6 +1,6 @@
 package kitchenpos.bo;
 
-import kitchenpos.dao.ProductDao;
+import kitchenpos.dao.DefaultProductDao;
 import kitchenpos.model.Product;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.mockito.BDDMockito.given;
 public class ProductBoTest {
 
     @Mock
-    private ProductDao productDao;
+    private DefaultProductDao defaultProductDao;
 
     @InjectMocks
     private ProductBo productBo;
@@ -60,7 +60,7 @@ public class ProductBoTest {
         expected.setName(name);
         expected.setPrice(price);
 
-        given(productDao.save(newProduct)).willReturn(expected);
+        given(defaultProductDao.save(newProduct)).willReturn(expected);
 
         assertThat(productBo.create(newProduct)).isEqualToIgnoringNullFields(expected);
     }
